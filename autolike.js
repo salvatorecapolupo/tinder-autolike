@@ -2,9 +2,44 @@ function checkTinder() {
 	return window.location.href.startsWith("https://tinder.com/app/recs");
 }
 
+function guessMyBehaviour(){
+	//sommelier version 1.0
+
+	var msInAday= 86400000;
+	var min = 0, max = msInAday;
+	var firstQuarter = 	30 * msInAday / 100;
+	var secondQuarter = 98 * msInAday / 100;
+	var thirdQuarter = 	99 * msInAday / 100;
+// 	var fourthQuarter = 100 * msInAday / 100;
+	
+	var behaviour = Math.random() * (+max - +min) + +min;
+	
+	var className= "-";
+	if ( behaviour<=firstQuarter )
+		className = 'recsGamepad__button End(15px)'; 	// <3, 		   30% probability / day
+	else if ( behaviour>firstQuarter && behaviour<=secondQuarter )
+		className = "recsGamepad__button Start(15px)"; 	// X, 		   68% probability / day
+	else if ( behaviour>secondQuarter && behaviour<=thirdQuarter )
+		className = "recsGamepad__superlike"; 			//superlike,   1% probability / day
+	else 
+		className = "recsGamepad__button--boost boostButton"; //boost, 1% probability / day
+
+	//just for debug	
+	var  readable_choice = {
+	    'recsGamepad__button End(15px)': 	"<3",
+	    'recsGamepad__button Start(15px)': 	"X",
+	    'recsGamepad__superlike': 			"super <3",
+	    'recsGamepad__button--boost boostButton': "boost",
+	};
+
+// 	return /*random*/ readable_choice[className];
+	return /*random*/ className;
+}
+
 function trickTinder() {
-	// Click, click, click the like button
-	var className = 'recsGamepad__button End(15px)';
+	// Click, click, click the buttons
+	var className = guessMyBehaviour();
+	
 	document.getElementsByClassName(className)[0].click();
 
 	// If reached max likes per day then show modal and get it's content...
@@ -37,7 +72,7 @@ function trickOkCupid() {
 // TODO: Need to add RNN for fake messages 
 
 function getRandomPeriod() {
-	return Math.round(Math.random() * (2000 - 500)) + 500;
+	return Math.round(Math.random() * (3000 - 750)) + 750;
 }
 
 (function loopSasori() {
