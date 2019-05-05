@@ -9,7 +9,7 @@ Pause time ranges are a little bit higher for avoiding ban.
 
 jasflesch for ispiring idea.
 Ispired from https://github.com/jaflesch/tinder-autolike
-Please note: I could create a branch from your project if you like/prefer.
+This was made just for lovehm, sorry: for fun.
 
 ## Warning
 
